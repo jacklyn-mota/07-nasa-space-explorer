@@ -96,8 +96,8 @@ button:hover {
   justify-content: center;
 }
 
-/* Gallery items */
-.gallery-item {
+/* Gallery cards */
+.card {
   flex: 1 1 100%;  /* full width by default */
   min-width: 280px;
   max-width: 500px;
@@ -112,22 +112,69 @@ button:hover {
 
 /* Three columns on wider screens */
 @media (min-width: 1000px) {
-  .gallery-item {
+  .card {
     flex: 0 1 31%;
   }
 }
 
-.gallery-item img {
+.card img,
+.card iframe,
+.card video {
   width: 100%;
   height: 200px;
   object-fit: cover;
   border-radius: 4px;
 }
 
-.gallery-item p {
+.card h3 {
+  margin-top: 10px;
+}
+
+.card p {
   margin-top: 10px;
   padding: 5px;
   font-size: 14px;
+}
+
+.media-link {
+  margin-top: 8px;
+  padding: 0;
+}
+
+.media-link a {
+  color: #6bb8ff;
+  text-decoration: underline;
+  font-size: 14px;
+}
+
+.media-unavailable {
+  width: 100%;
+  min-height: 200px;
+  border-radius: 8px;
+  border: 1px dashed #888;
+  background: #1f1f1f;
+  color: #f1f1f1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 12px;
+  text-align: center;
+}
+
+.media-unavailable a {
+  color: #8fc8ff;
+}
+
+.card {
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.12);
 }
 
 /* Placeholder content */
@@ -141,4 +188,81 @@ button:hover {
 .placeholder-icon {
   font-size: 48px;
   margin-bottom: 20px;
+}
+
+.card img {
+  transition: transform 0.3s ease;
+}
+
+.card:hover img {
+  transform: scale(1.05);
+}
+
+.hidden {
+  display: none;
+}
+
+#loading {
+  text-align: center;
+  font-size: 18px;
+  font-weight: bold;
+  min-height: 28px;
+}
+
+#spaceFact {
+  text-align: center;
+  margin-top: 10px;
+  font-size: 18px;
+  color: #333;
+  font-weight: 600;
+}
+
+#modal {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.85);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  z-index: 1000;
+}
+
+/* Keep modal hidden on initial page load until JS opens it. */
+#modal.hidden {
+  display: none;
+}
+
+.modal-content {
+  position: relative;
+  width: min(95vw, 1100px);
+  max-height: 95vh;
+  overflow-y: auto;
+  background: #111;
+  color: white;
+  border-radius: 10px;
+  padding: 24px;
+}
+
+#closeModal {
+  position: absolute;
+  right: 14px;
+  top: 8px;
+  font-size: 32px;
+  cursor: pointer;
+}
+
+#modalBody img,
+#modalBody iframe,
+#modalBody video {
+  width: 100%;
+  max-height: 75vh;
+  object-fit: contain;
+  border-radius: 8px;
+  border: 0;
+  margin: 12px 0;
+}
+
+#modalBody p {
+  line-height: 1.5;
 }
